@@ -17,7 +17,8 @@ class DatagridServiceProvider extends ServiceProvider {
 
 		$this->publishes([
 			__DIR__ . '/Views' => base_path('resources/views/vendor/datagrid'),
-		]);
+			base_path('vendor/aginev/datagrid/src/Views') => base_path('resources/views/vendor/datagrid'),
+		], 'views');
 	}
 
 	/**
@@ -26,10 +27,15 @@ class DatagridServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register() {
-		$this->app->register('Illuminate\Html\HtmlServiceProvider');
+		// Register the HtmlServiceProvider
+		App::register('Illuminate\Html\HtmlServiceProvider');
 
-		AliasLoader::getInstance()->alias("Form", 'Illuminate\Html\FormFacade');
-		AliasLoader::getInstance()->alias("Html", 'Illuminate\Html\HtmlFacade');
-		AliasLoader::getInstance()->alias("Datagrid", 'Aginev\Datagrid\Datagrid');
+		// Add aliases to Form/Html Facade
+		$loader = AliasLoader::getInstance();
+		$loader->alias('Form', 'Illuminate\Html\FormFacade');
+		$loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
+
+		// Add alias for datagrid
+		$loader->alias('Datagrid', 'Aginev\Datagrid\Datagrid');
 	}
 }
