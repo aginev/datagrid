@@ -170,4 +170,4 @@ php artisan vendor:publish
 This will copy the view to resources/views/vendor/datagrid/datagrid.blade.php. Editing this file you will be able to modify the grid view as you like with no chance to loose your changes.
 
 ## License
-DBAD - http://www.dbad-license.org/
+MIT - http://opensource.org/licenses/MIT
