@@ -1,0 +1,25 @@
+{
+    "name": "aginev/datagrid",
+    "description": "Datagrid package for Laravel v5",
+	"keywords": ["Datagrid", "Datagrid Package for Laravel v5"],
+    "homepage": "http://aginev.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Atanas Ginev",
+            "email": "naskospam@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Aginev\\Datagrid\\" : "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.*",
+        "illuminate/contracts": "5.*",
+        "illuminate/view": "5.*",
+		"illuminate/html": "5.*"
+    }
+}
