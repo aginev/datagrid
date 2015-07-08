@@ -295,6 +295,10 @@ class Column {
 	 * @return $this
 	 */
 	public function setFilters($filters) {
+		if ($filters instanceof Collection) {
+			$filters = $filters->toArray();
+		}
+		
 		$this->filters = $filters;
 
 		return $this;
