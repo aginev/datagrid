@@ -3,6 +3,7 @@
 namespace Aginev\Datagrid;
 
 use Aginev\Datagrid\Exceptions\ColumnException;
+use Illuminate\Support\Collection;
 
 /**
  * Description of Column
