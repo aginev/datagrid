@@ -1,5 +1,5 @@
 # Datagrid For Laravel 5
-Package that easily converts collection of models to a datagrid table.
+Package that easily converts collection of models to a datagrid table. The main goal of the package is to build for you a table with sorting and filters per column. You are defining the grid structure in your controller, pass the datagrid to the view and show it there. This will give you a really clean views, just a single line to show the table + filters + sorting + pagination. Keep in mind that filtering and sorting the data is up to you!
 
 ## Features
 - Composer installable
@@ -91,6 +91,7 @@ We need a table with all the users data, their roles, edit and delete links at t
 <?php
 
 // Grap all the users with their roles
+// NB!!! At the next line you are responsible for data filtration and sorting!
 $users = User::with('role')->paginate(25);
 
 // Create Datagrid instance
