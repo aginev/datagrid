@@ -21,7 +21,7 @@
 
 			@foreach ($grid->getColumns() as $col)
 				@if ($col->isAction() === false)
-					<th data-dg-col="{{ $col->getKey() }}">
+					<th data-dg-col="{{ $col->getKey() }}" {!! $col->getAttributesHtml() !!}>
 						@if ($col->isSortable())
 							<a href="{{ url(\Route::getCurrentRoute()->getUri()) }}?{{ http_build_query($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="glyphicon @if (\Input::get('f.order_by', '') == $col->getKey() && \Input::get('f.order_dir', 'ASC') == 'ASC') glyphicon-sort-by-attributes-alt @elseif (\Input::get('f.order_by', '') == $col->getKey() && \Input::get('f.order_dir', 'ASC') == 'DESC') glyphicon-sort-by-attributes @else glyphicon-sort @endif"></i></a>
 						@else
@@ -47,7 +47,7 @@
 				@foreach ($grid->getColumns() as $col)
 					@if ($col->isAction() === false)
 						@if ($col->hasFilters())
-							<th data-dg-col="{{ $col->getKey() }}">
+							<th data-dg-col="{{ $col->getKey() }}" {!! $col->getAttributesHtml() !!}>
 								@if ( is_array($col->getFilters()) && count($col->getFilters()) > 0 )
 									{!!
 										Form::select(
@@ -90,7 +90,7 @@
 				@endif
 
 				@foreach ($grid->getColumns() as $col)
-					<td data-dg-col="{{ $col->getKey() }}">
+					<td data-dg-col="{{ $col->getKey() }}" {!! $col->getAttributesHtml() !!}>
 						@if ($col->hasWrapper())
 							{!! $col->wrapper($row->{$col->getKey(true)}, $row) !!}
 						@else

@@ -79,6 +79,13 @@ class Column {
 	 */
 	private $is_action = false;
 
+    /**
+     * Column html attributes
+     *
+     * @var array
+     */
+    private $attributes = [];
+
 	/**
 	 * Instance Column
 	 *
@@ -435,4 +442,45 @@ class Column {
 
 		return false;
 	}
+
+    /**
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param $attributes
+     *
+     * @return $this
+     */
+    public function setAttributes($attributes)
+    {
+        foreach ($attributes as $key => $string_values) {
+            $values = explode(' ', $string_values);
+
+            // Trim the values
+            $values = array_map('trim', $values);
+            // Remove empty elements
+            $values = array_filter($values);
+            // Remove duplicate values
+            $values = array_unique($values);
+
+            $this->attributes[$key] = $values;
+        }
+
+        return $this;
+    }
+
+    public function getAttributesHtml() {
+        $html = '';
+
+        foreach ($this->getAttributes() as $attribute => $values) {
+            $html .= $attribute . '="' . join(' ', $values) . '" ';
+        }
+
+        return trim($html);
+    }
 }
