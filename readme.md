@@ -126,6 +126,11 @@ $grid
 		'has_filters' => true,
 		// Pass array of data to the filter. It will generate select field.
 		'filters'     => Role::all()->lists('title', 'id'),
+		// Define HTML attributes for this column
+		'attributes'  => [
+            'class'         => 'custom-class-here',
+            'data-custom'   => 'custom-data-attribute-value',
+        ],
 	])
 	->setColumn('created_at', 'Created', [
 		'sortable'    => true,
