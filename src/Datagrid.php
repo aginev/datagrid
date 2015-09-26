@@ -526,4 +526,21 @@ class Datagrid {
 
 		return $result;
 	}
+	
+    /**
+     * Current route link
+     * 
+     * @param array $get_params
+     * @return string
+     */
+    public static function getCurrentRouteLink($get_params = []) {
+        $current_action = \Illuminate\Support\Facades\Route::current()->getAction();
+        $controller = $current_action['controller'];
+        $namespace = $current_action['namespace'];
+        $parameters = \Illuminate\Support\Facades\Route::current()->parameters();
+
+        $controller_namespace_stripped = trim(str_replace($namespace, '', $controller), '\\');
+
+        return action($controller_namespace_stripped, $parameters) . ($get_params ? '?' . http_build_query($get_params) : '');
+    }
 }
