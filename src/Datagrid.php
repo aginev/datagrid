@@ -443,7 +443,7 @@ class Datagrid {
 	/**
 	 * Tell grid that it needs to have bulk checkboxes
 	 *
-	 * @param bool $flag Default false
+	 * @param string $flag Default false but when set to column from the result set it's values will be set as checkbox value
 	 *
 	 * @return $this
 	 */
@@ -459,6 +459,13 @@ class Datagrid {
 	 * @return bool
 	 */
 	public function isItBulkable() {
+		return (bool) $this->has_bulks;
+	}
+
+	/**
+	 * Get bulk column
+	 */
+	public function getBulk() {
 		return $this->has_bulks;
 	}
 
