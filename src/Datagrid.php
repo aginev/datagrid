@@ -347,8 +347,11 @@ class Datagrid {
 			$filters->put('order_by', $field);
 			$filters->put('order_dir', 'ASC');
 		}
+		
+		$per_page = intval(\Illuminate\Support\Facades\Request::get('per_page', \Config::get('pagination.per_page')));
+        	$per_page = $per_page > 0 ? $per_page : \Config::get('pagination.per_page');
 
-		return ['f' => $filters->toArray(), 'page' => 1];
+		return ['f' => $filters->toArray(), 'page' => 1, 'per_page' => $per_page];
 	}
 
 	/*
