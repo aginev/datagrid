@@ -40,7 +40,7 @@
 			<tr data-dg-type="filters-row">
 				@if ($grid->isItBulkable())
 					<th data-dg-col="bulks">
-						<input type="checkbox" value="1" class="form-control input-sm" data-dg-bulk-select="all" />
+						<input type="checkbox" value="1" data-dg-bulk-select="all" />
 					</th>
 				@endif
 
