@@ -23,7 +23,7 @@
 				@if ($col->isAction() === false)
 					<th data-dg-col="{{ $col->getKey() }}" {!! $col->getAttributesHtml() !!}>
 						@if ($col->isSortable())
-							<a href="{{ Datagrid::getCurrentRouteLink($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="glyphicon @if (\Input::get('f.order_by', '') == $col->getKey() && \Input::get('f.order_dir', 'ASC') == 'ASC') glyphicon-sort-by-attributes-alt @elseif (\Input::get('f.order_by', '') == $col->getKey() && \Input::get('f.order_dir', 'ASC') == 'DESC') glyphicon-sort-by-attributes @else glyphicon-sort @endif"></i></a>
+							<a href="{{ Datagrid::getCurrentRouteLink($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="glyphicon @if (\Request::get('f.order_by', '') == $col->getKey() && \Request::get('f.order_dir', 'ASC') == 'ASC') glyphicon-sort-by-attributes-alt @elseif (\Request::get('f.order_by', '') == $col->getKey() && \Request::get('f.order_dir', 'ASC') == 'DESC') glyphicon-sort-by-attributes @else glyphicon-sort @endif"></i></a>
 						@else
 							{{ $col->getTitle() }}
 						@endif
