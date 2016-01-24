@@ -23,7 +23,7 @@
 				@if ($col->isAction() === false)
 					<th data-dg-col="{{ $col->getKey() }}" {!! $col->getAttributesHtml() !!}>
 						@if ($col->isSortable())
-							<a href="{{ Datagrid::getCurrentRouteLink($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="glyphicon @if (\Request::get('f.order_by', '') == $col->getKey() && \Request::get('f.order_dir', 'ASC') == 'ASC') glyphicon-sort-by-attributes-alt @elseif (\Request::get('f.order_by', '') == $col->getKey() && \Request::get('f.order_dir', 'ASC') == 'DESC') glyphicon-sort-by-attributes @else glyphicon-sort @endif"></i></a>
+							<a href="{{ Datagrid::getCurrentRouteLink($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="fa @if (\Request::input('f.order_by', '') == $col->getKey() && \Request::input('f.order_dir', 'ASC') == 'ASC') fa-sort-asc @elseif (\Request::input('f.order_by', '') == $col->getKey() && \Request::input('f.order_dir', 'ASC') == 'DESC') fa-sort-desc @else fa-sort @endif"></i></a>
 						@else
 							{{ $col->getTitle() }}
 						@endif
@@ -72,8 +72,8 @@
 						@endif
 					@else
 						<th data-dg-col="actions">
-							<button class="btn btn-success btn-sm" type="submit" title="Search..."><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-							<a href="{{ \Request::url() }}" class="btn btn-danger btn-sm" title="Clear filters"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+							<button class="btn btn-success btn-sm" type="submit" title="Search..."><i class="fa fa-search" aria-hidden="true"></i></button>
+							<a href="{{ \Request::url() }}" class="btn btn-danger btn-sm" title="Clear filters"><i class="fa fa-remove" aria-hidden="true"></i></a>
 						</th>
 					@endif
 				@endforeach
