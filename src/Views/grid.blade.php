@@ -54,7 +54,7 @@
 											$col->getFilterName(),
 											$col->getFilters(true),
 											$grid->getFilter($col->getKey()),
-											($col->hasFilterMany() ? ['multiple' => 'multiple'] : []) + array('class' => 'form-control input-sm', 'data-dg-type' => "filter", 'placeholder' => $col->getTitle())
+											($col->hasFilterMany() ? ['multiple' => 'multiple'] : []) + array('class' => 'form-control input-sm', 'data-dg-type' => "filter")
 										)
 									!!}
 								@else
