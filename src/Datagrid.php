@@ -120,7 +120,17 @@ class Datagrid {
 	 * @return Collection
 	 */
 	public function getRows() {
-		return $this->rows;
+		$sort_params = clone $this->getFilters(false);
+		$rows = $this->rows->sortBy(function ($row) use ($sort_params) {
+			$params = explode('.', $sort_params['order_by']);
+			$obj = $row;
+			foreach($params as $key => $param) {
+				$obj = $obj->{$param};
+			}
+			return $obj;
+		}, SORT_REGULAR, $sort_params['order_dir'] === 'DESC');
+
+		return $rows;
 	}
 
 	/**
