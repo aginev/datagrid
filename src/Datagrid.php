@@ -121,15 +121,19 @@ class Datagrid {
 	 */
 	public function getRows() {
 		$sort_params = clone $this->getFilters(false);
-		$rows = $this->rows->sortBy(function ($row) use ($sort_params) {
-			$params = explode('.', $sort_params['order_by']);
-			$obj = $row;
-			foreach($params as $key => $param) {
-				$obj = $obj->{$param};
-			}
-			return $obj;
-		}, SORT_REGULAR, $sort_params['order_dir'] === 'DESC');
-
+		$rows = $this->rows;
+		if (isset($sort_params['order_by']) && trim($sort_params['order_by']) !== ''
+				&& isset($sort_params['order_dir']))
+		{
+			$rows = $rows->sortBy(function ($row) use ($sort_params) {
+				$params = explode('.', $sort_params['order_by']);
+				$obj = $row;
+				foreach($params as $key => $param) {
+					$obj = $obj->{$param};
+				}
+				return $obj;
+			}, SORT_REGULAR, $sort_params['order_dir'] === 'DESC');
+		}
 		return $rows;
 	}
 
