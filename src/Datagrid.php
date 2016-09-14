@@ -124,7 +124,7 @@ class Datagrid {
 		$rows = $this->rows;
 
 		// filter rows
-		$just_filters = $filters;
+		$just_filters = clone $filters;
 		unset($just_filters['order_by']);
 		unset($just_filters['order_dir']);
 		$non_empty_filter = array_filter((array)$just_filters->all());
@@ -150,7 +150,7 @@ class Datagrid {
 			});
 
 		// sort rows
-		if (isset($filter_params['order_by']) && trim($filters['order_by']) !== ''
+		if (isset($filters['order_by']) && trim($filters['order_by']) !== ''
 				&& isset($filters['order_dir']))
 		{
 			$rows = $rows->sortBy(function ($row) use ($filters) {
