@@ -2,9 +2,7 @@
 
 use Collective\Html\FormFacade;
 use Collective\Html\HtmlFacade;
-use Collective\Html\HtmlServiceProvider;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class DatagridServiceProvider extends ServiceProvider
@@ -34,14 +32,19 @@ class DatagridServiceProvider extends ServiceProvider
     public function register()
     {
         // Register the HtmlServiceProvider
-        $this->app->singleton('Illuminate\Html\HtmlServiceProvider');
+        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+
 
         // Add aliases to Form/Html Facade
         $loader = AliasLoader::getInstance();
+
+        // Add aliases to Form/Html Facade
         $loader->alias('Form', FormFacade::class);
-        $loader->alias('HTML', HtmlFacade::class);
+        $loader->alias('Html', HtmlFacade::class);
 
         // Add alias for datagrid
-        $loader->alias('Datagrid', 'Aginev\Datagrid\Datagrid');
+        $loader->alias('Datagrid', Datagrid::class);
+
+        //dd($this->app);
     }
 }
