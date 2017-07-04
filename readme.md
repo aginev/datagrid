@@ -170,7 +170,7 @@ The most stupid thing is to go at vendor/aginev/datagrid/src/Views and to edit g
 Much better way is to publish the view to your project like so:
 
 ```sh
-php artisan vendor:publish
+php artisan vendor:publish --provider="Aginev\Datagrid\DatagridServiceProvider" --tag="views"
 ```
 
 This will copy the view to resources/views/vendor/datagrid/datagrid.blade.php. Editing this file you will be able to modify the grid view as you like with no chance to loose your changes.
