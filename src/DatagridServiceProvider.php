@@ -15,12 +15,14 @@ class DatagridServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Tell Laravel where the views for a given namespace are located.
-        $this->loadViewsFrom(__DIR__ . '/Views', 'datagrid');
+        $namespace = 'datagrid';
 
+        // Tell Laravel where the views for a given namespace are located.
+        $this->loadViewsFrom(__DIR__ . '/Views', $namespace);
+
+        // Publish package views
         $this->publishes([
-            __DIR__ . '/Views'                            => base_path('resources/views/vendor/datagrid'),
-            base_path('vendor/aginev/datagrid/src/Views') => base_path('resources/views/vendor/datagrid'),
+            __DIR__ . '/Views/grid.blade.php' => resource_path('views/vendor/' . $namespace . '/grid.blade.php'),
         ], 'views');
     }
 
@@ -34,7 +36,6 @@ class DatagridServiceProvider extends ServiceProvider
         // Register the HtmlServiceProvider
         $this->app->register(\Collective\Html\HtmlServiceProvider::class);
 
-
         // Add aliases to Form/Html Facade
         $loader = AliasLoader::getInstance();
 
@@ -44,7 +45,5 @@ class DatagridServiceProvider extends ServiceProvider
 
         // Add alias for datagrid
         $loader->alias('Datagrid', Datagrid::class);
-
-        //dd($this->app);
     }
 }
