@@ -34,7 +34,7 @@ class DatagridServiceProvider extends ServiceProvider
     public function register()
     {
         // Register the HtmlServiceProvider
-        App::register(HtmlServiceProvider::class);
+        $this->app->singleton('Illuminate\Html\HtmlServiceProvider');
 
         // Add aliases to Form/Html Facade
         $loader = AliasLoader::getInstance();
