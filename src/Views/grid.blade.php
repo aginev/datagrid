@@ -25,7 +25,7 @@
 						@if ($col->isSortable())
 							<a href="{{ Datagrid::getCurrentRouteLink($grid->getSortParams($col->getKey())) }}">{!! $col->getTitle() !!}<i class="fa @if (\Request::input('f.order_by', '') == $col->getKey() && \Request::input('f.order_dir', 'ASC') == 'ASC') fa-sort-asc @elseif (\Request::input('f.order_by', '') == $col->getKey() && \Request::input('f.order_dir', 'ASC') == 'DESC') fa-sort-desc @else fa-sort @endif"></i></a>
 						@else
-							{{ $col->getTitle() }}
+							{!! $col->getTitle() !!}
 						@endif
 					</th>
 				@else
