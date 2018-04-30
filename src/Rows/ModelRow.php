@@ -3,16 +3,18 @@
 use Aginev\Datagrid\Rows\Row;
 use Aginev\Datagrid\Rows\RowInterface;
 
-class ModelRow extends Row {
+class ModelRow extends Row
+{
 
-	public function __get($key) {
-		// Get the keys separated by .
-		$keys = explode('.', $key);
+    public function __get($key)
+    {
+        // Get the keys separated by .
+        $keys = explode('.', $key);
 
-		$value = $this->getData();
+        $value = $this->getData();
 
-		// The easiest way to chain the object properties
-		foreach ($keys as $key) {
+        // The easiest way to chain the object properties
+        foreach ($keys as $key) {
             try {
                 $value = $value->{$key};
             } catch (\Exception $e) {
@@ -21,17 +23,18 @@ class ModelRow extends Row {
             }
         }
 
-		return $value;
-	}
+        return $value;
+    }
 
-	/**
-	 * @param array $data
-	 *
-	 * @return $this
-	 */
-	public function setData($data) {
-		$this->data = $data;
+    /**
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
 
-		return $this;
-	}
+        return $this;
+    }
 }
