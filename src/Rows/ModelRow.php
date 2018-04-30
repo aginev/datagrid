@@ -13,8 +13,13 @@ class ModelRow extends Row {
 
 		// The easiest way to chain the object properties
 		foreach ($keys as $key) {
-			$value = $value->{$key};
-		}
+            try {
+                $value = $value->{$key};
+            } catch (\Exception $e) {
+                $value = '';
+                break;
+            }
+        }
 
 		return $value;
 	}
