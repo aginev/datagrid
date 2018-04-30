@@ -12,12 +12,9 @@ class ModelRow extends Row {
 		$value = $this->getData();
 
 		// The easiest way to chain the object properties
-		try {
-            $value = $value->{$key};
-        } catch (\Exception $e) {
-	        $value = '';
-	        break;
-        }
+		foreach ($keys as $key) {
+			$value = $value->{$key};
+		}
 
 		return $value;
 	}
