@@ -6,35 +6,34 @@ use Aginev\Datagrid\Rows\RowInterface;
 class ModelRow extends Row
 {
 
-    public function __get($key)
-    {
-        // Get the keys separated by .
-        $keys = explode('.', $key);
+	public function __get($key)
+	{
+		// Get the keys separated by .
+		$keys = explode('.', $key);
 
-        $value = $this->getData();
+		$value = $this->getData();
 
-        // The easiest way to chain the object properties
-        foreach ($keys as $key) {
-            try {
-                $value = $value->{$key};
-            } catch (\Exception $e) {
-                $value = '';
-                break;
-            }
-        }
+		// The easiest way to chain the object properties
+		foreach ($keys as $key) {
+			$value = $value->{$key};
 
-        return $value;
-    }
+			if (is_null($value)) {
+				break;
+			}
+		}
 
-    /**
-     * @param array $data
-     *
-     * @return $this
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
+		return $value;
+	}
 
-        return $this;
-    }
+	/**
+	 * @param array $data
+	 *
+	 * @return $this
+	 */
+	public function setData($data)
+	{
+		$this->data = $data;
+
+		return $this;
+	}
 }
