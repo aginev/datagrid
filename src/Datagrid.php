@@ -349,9 +349,10 @@ class Datagrid {
 		}
 		
 		$per_page = intval(\Illuminate\Support\Facades\Request::get('per_page', \Config::get('pagination.per_page')));
-        	$per_page = $per_page > 0 ? $per_page : \Config::get('pagination.per_page');
+			$per_page = $per_page > 0 ? $per_page : \Config::get('pagination.per_page');
 
-		return ['f' => $filters->toArray(), 'page' => 1, 'per_page' => $per_page];
+		$filter = ['f' => $filters->toArray(), 'page' => 1, 'per_page' => $per_page];
+		return empty($_GET) ? $filter : array_merge($_GET, $filter);
 	}
 
 	/*
@@ -537,17 +538,17 @@ class Datagrid {
 		return $result;
 	}
 	
-    /**
-     * Current route link
-     * 
-     * @param array $get_params
-     * @return string
-     */
-    public static function getCurrentRouteLink($get_params = []) {
-        $current_action = \Illuminate\Support\Facades\Route::current()->getAction();
-        $controller = '\\' . $current_action['controller'];
-        $parameters = \Illuminate\Support\Facades\Route::current()->parameters();
+	/**
+	 * Current route link
+	 *
+	 * @param array $get_params
+	 * @return string
+	 */
+	public static function getCurrentRouteLink($get_params = []) {
+		$current_action = \Illuminate\Support\Facades\Route::current()->getAction();
+		$controller = '\\' . $current_action['controller'];
+		$parameters = \Illuminate\Support\Facades\Route::current()->parameters();
 
-        return action($controller, $parameters) . ($get_params ? '?' . http_build_query($get_params) : '');
-    }
+		return action($controller, $parameters) . ($get_params ? '?' . http_build_query($get_params) : '');
+	}
 }
