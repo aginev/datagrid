@@ -1,7 +1,10 @@
-<?php namespace Aginev\Datagrid;
+<?php
+
+namespace Aginev\Datagrid;
 
 use Aginev\Datagrid\Exceptions\ColumnException;
 use Aginev\Datagrid\Exceptions\DataException;
+use Aginev\Datagrid\Exceptions\RowException;
 use Aginev\Datagrid\Rows\Row;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Request;
@@ -65,6 +68,15 @@ class Datagrid {
 	private $pagination = false;
 
 	/**
+	* Row setter closure. Will be used to generates self::rows
+	* If not passed one of \Aginev\Datagrid\Rows\* will be used (depending on data type)
+	* @see method self::setRow() or Row::getRowInstance() for more info
+	*
+	* @var null
+	*/
+	private $row_setter = null;
+
+	/**
 	 * Create new datagrid instance
 	 *
 	 * @param mixed $rows Data to be rendered. It can be array or \Illuminate\Support\Collection.
@@ -76,11 +88,11 @@ class Datagrid {
 		$this->columns = new Collection();
 		$this->filters = new Collection();
 
+		$this->config = $config;
+		
 		$this->initPagination($rows);
 		$this->setRows($rows);
 		$this->setFilters($filters);
-
-		$this->config = $config;
 	}
 
 	/**
@@ -92,6 +104,42 @@ class Datagrid {
 	 */
 	public function show($id = null) {
 		return View::make('datagrid::grid', ['grid' => $this, 'id' => $id])->render();
+	}
+
+	/**
+	* Get row setter (if exists)
+	*
+	* @return null|\Closure
+	*/
+	public function getRowSetter() {
+		return $this->row_setter;
+	}
+
+	/**
+	* Set custom row setter
+	*
+	* @param \Closure $setter
+	*
+	* @return $this
+	*
+	* @throws RowException
+	*/
+	public function setRowSetter($setter) {
+		if (!($setter instanceof \Closure)) {
+			throw new RowException('Row setter must be closure.');
+		}
+		$this->row_setter = $setter;
+
+		return $this;
+	}
+
+	/**
+	* Check did custom row setter exists or not
+	*
+	* @return bool
+	*/
+	public function hasRowSetter() {
+		return $this->row_setter !== null;
 	}
 
 	/*
@@ -109,7 +157,11 @@ class Datagrid {
 	 * @throws Exceptions\CellException
 	 */
 	public function setRow($row) {
-		$this->rows->push(Row::getRowInstance($row));
+		if ($this->hasRowSetter()) {
+			$this->rows->push(($this->row_setter)($row));
+		} else {
+			$this->rows->push(Row::getRowInstance($row));
+		}
 
 		return $this;
 	}
