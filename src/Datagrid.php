@@ -89,8 +89,7 @@ class Datagrid {
 		$this->filters = new Collection();
 
 		$this->config = $config;
-		
-		$this->initPagination($rows);
+
 		$this->setRows($rows);
 		$this->setFilters($filters);
 	}
@@ -188,6 +187,8 @@ class Datagrid {
 				$this->setRow($row);
 			}
 		}
+		
+		$this->initPagination($rows);
 
 		return $this;
 	}
