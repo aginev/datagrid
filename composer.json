@@ -1,25 +1,28 @@
 {
-    "name": "aginev/datagrid",
-    "description": "Datagrid package for Laravel v5",
-	"keywords": ["Datagrid", "Datagrid Package for Laravel v5"],
-    "homepage": "http://aginev.com",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Atanas Ginev",
-            "email": "naskospam@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Aginev\\Datagrid\\" : "src"
-        }
-    },
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "5.*",
-        "illuminate/contracts": "5.*",
-        "illuminate/view": "5.*",
-		"laravelcollective/html": "5.*"
+  "name": "aginev/datagrid",
+  "description": "Datagrid package for Laravel v5",
+  "keywords": [
+    "Datagrid",
+    "Datagrid Package for Laravel v5"
+  ],
+  "homepage": "http://aginev.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Atanas Ginev",
+      "email": "naskospam@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Aginev\\Datagrid\\": "src"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "illuminate/support": "^6.0",
+    "illuminate/contracts": "^6.0",
+    "illuminate/view": "^6.0",
+    "laravelcollective/html": "^6.0"
+  }
 }
