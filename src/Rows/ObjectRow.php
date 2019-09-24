@@ -1,19 +1,22 @@
-<?php namespace Aginev\Datagrid\Rows;
+<?php
 
-use Aginev\Datagrid\Rows\Row;
-use Aginev\Datagrid\Rows\RowInterface;
+namespace Aginev\Datagrid\Rows;
 
-class ObjectRow extends Row {
+use Illuminate\Support\Arr;
 
-	/**
-	 * @param \stdClass $data
-	 *
-	 * @return $this
-	 */
-	public function setData($data) {
-		$data = json_decode(json_encode($data), true);
-		$this->data = array_dot($data);
+class ObjectRow extends Row
+{
 
-		return $this;
-	}
+    /**
+     * @param \stdClass $data
+     *
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $data = json_decode(json_encode($data), true);
+        $this->data = Arr::dot($data);
+
+        return $this;
+    }
 }

@@ -1,18 +1,19 @@
-<?php namespace Aginev\Datagrid\Rows;
+<?php
 
-use Aginev\Datagrid\Rows\Row;
-use Aginev\Datagrid\Rows\RowInterface;
+namespace Aginev\Datagrid\Rows;
 
-class CollectionRow extends Row {
+class CollectionRow extends Row
+{
 
-	/**
-	 * @param array $data
-	 *
-	 * @return $this
-	 */
-	public function setData($data) {
-		$this->data = $data;
+    /**
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
 
-		return $this;
-	}
+        return $this;
+    }
 }
