@@ -1,19 +1,19 @@
 <?php namespace Aginev\Datagrid\Rows;
 
-use Aginev\Datagrid\Rows\Row;
-use Aginev\Datagrid\Rows\RowInterface;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 
-class ArrayRow extends Row {
+class ArrayRow extends Row
+{
 
-	/**
-	 * @param array $data
-	 *
-	 * @return $this
-	 */
-	public function setData($data) {
-		$this->data = array_dot($data);
+    /**
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $this->data = Arr::dot($data);
 
-		return $this;
-	}
+        return $this;
+    }
 }

@@ -1,5 +1,8 @@
-<?php namespace Aginev\Datagrid\Exceptions;
+<?php
 
-class DatagridException extends \Exception {
-	# nothing to override
+namespace Aginev\Datagrid\Exceptions;
+
+class DatagridException extends \Exception
+{
+    # nothing to override
 }

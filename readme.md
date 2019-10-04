@@ -16,11 +16,11 @@ Build only for Laravel Framework 5 only!
 
 ```json
 "require": {
-	"php": ">=5.*",
-	"illuminate/support": "5.*",
-	"illuminate/contracts": "5.*",
-	"illuminate/view": "5.*",
-	"illuminate/html": "5.*"
+    "php": "^7.2",
+    "illuminate/support": "^6.0",
+    "illuminate/contracts": "^6.0",
+    "illuminate/view": "^6.0",
+    "laravelcollective/html": "^6.0"
 }
 ```
 

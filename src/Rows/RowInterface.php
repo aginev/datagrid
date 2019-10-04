@@ -1,10 +1,13 @@
-<?php namespace Aginev\Datagrid\Rows;
+<?php
+
+namespace Aginev\Datagrid\Rows;
 
 
-interface RowInterface {
+interface RowInterface
+{
 
-	public function __get($key);
+    public function __get($key);
 
-	public function setData($data);
+    public function setData($data);
 
 }

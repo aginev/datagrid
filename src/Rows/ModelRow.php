@@ -1,7 +1,6 @@
-<?php namespace Aginev\Datagrid\Rows;
+<?php
 
-use Aginev\Datagrid\Rows\Row;
-use Aginev\Datagrid\Rows\RowInterface;
+namespace Aginev\Datagrid\Rows;
 
 class ModelRow extends Row
 {
