@@ -1,4 +1,4 @@
-# Datagrid For Laravel 5
+# Datagrid For Laravel 5+
 Package that easily converts collection of models to a datagrid table. The main goal of the package is to build for you a table with sorting and filters per column. You are defining the grid structure in your controller, pass the datagrid to the view and show it there. This will give you a really clean views, just a single line to show the table + filters + sorting + pagination. Keep in mind that filtering and sorting the data is up to you!
 
 ## Features
@@ -12,24 +12,14 @@ Package that easily converts collection of models to a datagrid table. The main 
 - Columns has data attributes based on a column data key
 
 ## Requires
-Build only for Laravel Framework 5 only!
-
-```json
-"require": {
-    "php": "^7.2",
-    "illuminate/support": "^6.0",
-    "illuminate/contracts": "^6.0",
-    "illuminate/view": "^6.0",
-    "laravelcollective/html": "^6.0"
-}
-```
+Build to be used with Laravel only!
 
 ## Installation
 Require package at your composer.json file like so
 ```json
 {
     "require": {
-        "aginev/datagrid": "1.0.*"
+        "aginev/datagrid": "2.0.*"
     }
 }
 ```
@@ -44,20 +34,10 @@ Or in terminal
 composer require aginev/datagrid:1.0.*
 ```
 
-Add Service Provider to your config/app.php like so
-```php
-Aginev\Datagrid\DatagridServiceProvider::class,
-```
-
-Optionaly you could add package alias, if not it will be loaded automatically
-```php
-'Datagrid' => Aginev\Datagrid\Datagrid::class,
-```
-
 ## HOWTO
 Let's consider that we have users and user roles (roles) table at our system.
 
-### Users table consists of:
+### Users table
 
 **id:** primary key
 
@@ -75,7 +55,7 @@ Let's consider that we have users and user roles (roles) table at our system.
 
 **updated_at:** when is the latest update
 
-### Roles table consists of:
+### Roles Table
 
 **id:** primary key
 
@@ -163,17 +143,22 @@ Lets show the grid in the view. grid-table param is not required and it's the id
 ...
 ```
 
-### Modifying default view
-
-The most stupid thing is to go at vendor/aginev/datagrid/src/Views and to edit grid.blade.php. Doing so after a package update all your changes will be overwrited!
-
-Much better way is to publish the view to your project like so:
+### Modifying Default View
 
 ```sh
 php artisan vendor:publish --provider="Aginev\Datagrid\DatagridServiceProvider" --tag="views"
 ```
 
-This will copy the view to resources/views/vendor/datagrid/datagrid.blade.php. Editing this file you will be able to modify the grid view as you like with no chance to loose your changes.
+This will copy the view to `resources/views/vendor/datagrid/datagrid.blade.php`. Editing this file you will be able to modify the grid view as you like with no chance to loose your changes.
+
+### Modifying Config
+
+```sh
+php artisan vendor:publish --provider="Aginev\Datagrid\DatagridServiceProvider" --tag="config"
+```
+
+This will copy the config to `config/datagrid.php`.
+
 
 ## License
 MIT - http://opensource.org/licenses/MIT
