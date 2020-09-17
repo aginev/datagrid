@@ -1,13 +1,10 @@
 <?php namespace Aginev\Datagrid;
 
-use Collective\Html\FormFacade;
-use Collective\Html\HtmlFacade;
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class DatagridServiceProvider extends ServiceProvider
 {
-
+    
     /**
      * Bootstrap the application services.
      *
@@ -16,16 +13,21 @@ class DatagridServiceProvider extends ServiceProvider
     public function boot()
     {
         $namespace = 'datagrid';
-
+        
         // Tell Laravel where the views for a given namespace are located.
-        $this->loadViewsFrom(__DIR__ . '/Views', $namespace);
-
+        $this->loadViewsFrom(__DIR__ . '/../views', $namespace);
+        
         // Publish package views
         $this->publishes([
-            __DIR__ . '/Views/grid.blade.php' => resource_path('views/vendor/' . $namespace . '/grid.blade.php'),
+            __DIR__ . '/../views/datagrid.blade.php' => resource_path('views/vendor/' . $namespace . '/datagrid.blade.php'),
         ], 'views');
+        
+        // Publish package config
+        $this->publishes([
+            __DIR__ . '/../config/datagrid.php' => config_path('datagrid.php'),
+        ], 'config');
     }
-
+    
     /**
      * Register the application services.
      *
@@ -33,17 +35,6 @@ class DatagridServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Register the HtmlServiceProvider
-        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
-
-        // Add aliases to Form/Html Facade
-        $loader = AliasLoader::getInstance();
-
-        // Add aliases to Form/Html Facade
-        $loader->alias('Form', FormFacade::class);
-        $loader->alias('Html', HtmlFacade::class);
-
-        // Add alias for datagrid
-        $loader->alias('Datagrid', Datagrid::class);
+        $this->mergeConfigFrom(__DIR__ . '/../config/datagrid.php', 'datagrid');
     }
 }
