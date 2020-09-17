@@ -98,7 +98,7 @@ class Datagrid
      */
     public function show($id = null)
     {
-        return View::make('datagrid::grid', ['grid' => $this, 'id' => $id])->render();
+        return View::make('datagrid::datagrid', ['grid' => $this, 'id' => $id])->render();
     }
 
     /*
