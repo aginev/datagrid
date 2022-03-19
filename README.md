@@ -3,13 +3,13 @@ Package that easily converts collection of models to a datagrid table. The main 
 
 ## Features
 - Composer installable
-- PSR4 autoloading
+- PSR4 auto-loading
 - Has filters row
 - Has columns sort order
 - Easily can add action column with edit/delete/whatever links
 - Ability to modify cell data via closure function
 - Bootstrap friendly
-- Columns has data attributes based on a column data key
+- Each column has data attributes based on a column data key
 
 ## Requires
 Build to be used with Laravel only!
@@ -70,7 +70,7 @@ We need a table with all the users data, their roles, edit and delete links at t
 ```php
 <?php
 
-// Grap all the users with their roles
+// Grab all the users with their roles
 // NB!!! At the next line you are responsible for data filtration and sorting!
 $users = User::with('role')->paginate(25);
 
@@ -86,7 +86,7 @@ $grid
 	->setColumn('first_name', 'First Name', [
 		// Will be sortable column
 		'sortable'    => true,
-		// Will have filter
+		// Will have filtered
 		'has_filters' => true
 	])
 	->setColumn('email', 'Email', [
@@ -132,11 +132,11 @@ $grid
 		}
 	]);
 
-// Finally pass the grid object to the view
+// Finally, pass the grid object to the view
 return view('grid', ['grid' => $grid]);
 ```
 
-Lets show the grid in the view. grid-table param is not required and it's the id of the table.
+Let's show the grid in the view. grid-table param is not required, and it's the id of the table.
 ```blade
 ...
 {!! $grid->show('grid-table') !!}
