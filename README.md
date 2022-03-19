@@ -19,7 +19,7 @@ Require package at your composer.json file like so
 ```json
 {
     "require": {
-        "aginev/datagrid": "2.0.*"
+        "aginev/datagrid": "3"
     }
 }
 ```
@@ -31,7 +31,7 @@ composer update
 
 Or in terminal
 ```sh
-composer require aginev/datagrid:1.0.*
+composer require aginev/datagrid
 ```
 
 ## HOWTO
