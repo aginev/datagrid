@@ -5,7 +5,7 @@
     "Datagrid",
     "Datagrid Package for Laravel"
   ],
-  "homepage": "http://aginev.com",
+  "homepage": "https://aginev.com",
   "license": "MIT",
   "authors": [
     {
@@ -20,7 +20,7 @@
   },
   "require": {
     "php": "^7.2|^8.0",
-    "laravel/framework": "^7.0|^8.0"
+    "laravel/framework": "^7.0|^8.0|^9.0"
   },
   "extra": {
     "laravel": {
